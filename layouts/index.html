@@ -6,10 +6,32 @@
     {{ partial "entry/content" . }}
   </article>
   {{ end }}
-
+    
   <div class='home-sections-container'>
-    <div class='home-sections'>
-      {{ partial "home/recent_posts" . }}
+    <div class='home-sections'>     
+      <section id='recent-posts' class='home-section'>
+        <div class='list-container'>
+          <ul class='list'>
+ 	  {{ range ( first .Site.Params.settings.recentPostsLength ( where .Data.Pages "Section" "ne" "page" ) ) }}
+          {{ .Render "liPosts" }}
+          <article>
+            <div style="margin-top:10px;"></div><i>{{ .Summary }}</i>
+            {{ if .Truncated }}
+            <div style="line-height: 0.0;margin-bottom:30px;">
+              <a href="{{ .RelPermalink }}">Read More …</a>
+            </div>
+            {{ else }}
+            <div style="line-height: 0.0;margin-bottom:15px;">
+            </div>
+            {{ end }}
+          </article>
+          {{ end }}
+          </ul>
+        </div>
+        <div style="margin-top:17px;">
+          <a href="/blog">→ All Posts</a>
+        </div>
+      </section>
     </div>
   </div>
 </main>

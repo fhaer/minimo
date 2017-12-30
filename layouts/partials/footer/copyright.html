@@ -14,5 +14,6 @@
       {{ .prefix }} &copy; {{ with ( $.Scratch.Get "copyrightStartYear" ) }}{{ . }}-{{ end }}{{ now.Year }} {{ or .holder $.Site.Title }} {{ .suffix }}
     {{- end -}}
   {{ end }}
+  
   </p>
 </div>
